@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <script src="https://cdn.bootcdn.net/ajax/libs/zepto/1.2.0/zepto.min.js"></script>
+  </head>
+  <body>
+    <iframe
+      id="game"
+      style="width: 500px; height: 500px"
+      src="http://localhost:3000"
+      allow="*"
+    ></iframe>
+
+    <button onclick="emit()">触发</button>
+    <a href="12313">123123</a>
+
+    <script>
+      const emit = () => {
+        // 积木代码映射游戏js代码
+        const blockMapJs = {
+          repeat: "for(let i = 1; i++; i < 10) {}",
+          changeSkin: "changeSkin()",
+        };
+
+        // 积木代码转为游戏js代码
+        const js = (() => {
+          // 此处可以继续实现积木代码转为游戏js代码
+          return `
+            setTimeout(() => {
+              changeSkin();
+            }, 1000);
+          `;
+        })();
+
+        // 同步到游戏框架
+        document.getElementById("game").contentWindow.postMessage(js, "*");
+      };
+    </script>
+  </body>
+</html>
